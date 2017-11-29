@@ -1,0 +1,29 @@
+{
+    "root": true,
+    "extends": "r1cebank",
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "rules": {
+       "no-return-assign": "off",
+       "no-loop-func": "off",
+       "arrow-body-style": "off",
+       "array-callback-return": "off",
+       "space-before-function-paren": ["error", "always"],
+       "dot-notation": "warn",
+       "indent": [
+          "error",
+          4,
+          {
+             "SwitchCase": 1
+          }
+       ]
+    },
+    "settings": {
+        "import/resolver": {
+            "node":{
+                "extensions":[".js", ".android.js", ".ios.js"]
+            }
+        }
+    }
+  }
