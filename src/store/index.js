@@ -38,19 +38,31 @@ function configureStore () {
         enhancers = compose();
     }
     const applicationStore = createStoreWithMiddleware(rootReducer, initialstate, enhancers);
-    persistStore(applicationStore, null);
-    return  applicationStore;
+    const persistor = persistStore(applicationStore, null);
+    return { store: applicationStore, persistor };
 }
 
 class store {
     constructor () {
-        this.store = configureStore();
+        const configuredStore = configureStore();
+        this.store = configuredStore.store;
+        this.persistor = configuredStore.persistor;
     }
     static getStore () {
         if (!this.store) {
-            this.store = configureStore();
+            const configuredStore = configureStore();
+            this.store = configuredStore.store;
+            this.persistor = configuredStore.persistor;
         }
         return this.store;
+    }
+    static getPersistor () {
+        if (!this.store) {
+            const configuredStore = configureStore();
+            this.store = configuredStore.store;
+            this.persistor = configuredStore.persistor;
+        }
+        return this.persistor;
     }
 }
 
