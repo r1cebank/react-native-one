@@ -9,6 +9,7 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { AsyncStorage } from 'react-native';
 import devTools from 'remote-redux-devtools';
+import { routerReducer } from 'react-router-redux';
 import { persistCombineReducers, persistStore } from 'redux-persist';
 import { createStore, applyMiddleware, compose } from 'redux';
 
@@ -27,7 +28,8 @@ const createStoreWithMiddleware = __DEV__ ? applyMiddleware(
 
 const rootReducer = persistCombineReducers({ key: 'primary', storage: AsyncStorage }, {
     // every modules reducer should be define here
-    settings: settingsReducer
+    settings: settingsReducer,
+    router: routerReducer
 });
 
 function configureStore () {
