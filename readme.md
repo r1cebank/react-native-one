@@ -4,7 +4,11 @@ one to rule them all!
 
 React Native One is a demo project I created after making number of react native projects in the past. I have realized that I made some horrible mistakes in the past and hope to create a template project that will address most of the issue in this project.
 
-### What React Native One will do better than [CoreEvent](https://github.com/r1cebank/CoreEvent) this time?
+My previous projects are:
+[CoreEvent](https://github.com/r1cebank/CoreEvent)
+[EventCore](https://github.com/r1cebank/EventCore)
+
+### What React Native One will do better than other projects this time?
 
 - Better style management
 - Better way to seperating components and importing them
