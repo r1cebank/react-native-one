@@ -18,6 +18,11 @@ import initialstate from '../res/initial-state.json';
 
 const loggerMiddleware = createLogger();
 
+/**
+ * Create a new createstore function with middlewares
+ * also we want to eliminate some of the middlewares
+ * for on-device deployment
+ */
 const createStoreWithMiddleware = __DEV__ ? applyMiddleware(
     thunkMiddleware,
     loggerMiddleware
@@ -26,12 +31,20 @@ const createStoreWithMiddleware = __DEV__ ? applyMiddleware(
     thunkMiddleware
 )(createStore);
 
+/**
+ * Create the root reduer by combinging the reducers together,
+ * here is where we add our custom reducers
+ */
 const rootReducer = persistCombineReducers({ key: 'primary', storage: AsyncStorage }, {
     // every modules reducer should be define here
     settings: settingsReducer,
     router: routerReducer
 });
 
+/**
+ * Configure store function, this is invoked by the singleton
+ * @returns {any}
+ */
 function configureStore () {
     let enhancers = undefined;
     if (__DEV__) {
@@ -44,6 +57,11 @@ function configureStore () {
     return { store: applicationStore, persistor };
 }
 
+/**
+ * This is the singleton for the application store
+ * when a store is requested it will check existing store
+ * if non exist, it will invoke the createstore to create a new store
+ */
 class store {
     constructor () {
         const configuredStore = configureStore();

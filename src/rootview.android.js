@@ -7,6 +7,11 @@ import Home from './view/home';
 
 const history = createHistory();
 
+/**
+ * This is the rootView component, it is required by
+ * App and it includes the app router, the router definition
+ * will also be here
+ */
 export default class RootView extends Component {
     render () {
         return (

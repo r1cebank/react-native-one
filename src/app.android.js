@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { AppState } from 'react-native';
 import React, { Component } from 'react';
 import { PersistGate } from 'redux-persist/es/integration/react';
-import DeviceInfo from './global/deviceInfo';
 
 import Store from './store';
 import RootView from './rootview';
