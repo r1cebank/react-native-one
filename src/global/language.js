@@ -20,7 +20,9 @@ const language = {
 
 // Load the dictonary
 I18n.translations = {
-    en: require('../res/languages/en.json')
+    en: require('../res/languages/en.json'),
+    ja: require('../res/languages/ja.json'),
+    zh_CN: require('../res/languages/zh_CN.json')
 };
 
 module.exports = language;
