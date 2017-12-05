@@ -11,6 +11,8 @@ import Store from './store';
 import RootView from './rootview';
 import LifeCycle from './global/lifecycle';
 
+import Loading from './view/loading';
+
 /**
  * The root function is where you do most of the sync startup functions
  * The PersistGate wrapped around RootView is responsible to delay application loading
@@ -31,7 +33,9 @@ class App extends Component {
     render () {
         return (
             <Provider store={Store.getStore()}>
-                <PersistGate persistor={Store.getPersistor()}>
+                <PersistGate
+                    loading={<Loading />}
+                    persistor={Store.getPersistor()}>
                     <RootView />
                 </PersistGate>
             </Provider>
