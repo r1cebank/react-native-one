@@ -9,43 +9,45 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { AsyncStorage } from 'react-native';
 import devTools from 'remote-redux-devtools';
+import Reactotron from 'reactotron-react-native';
 import { routerReducer } from 'react-router-redux';
 import { persistCombineReducers, persistStore } from 'redux-persist';
 import { createStore, applyMiddleware, compose } from 'redux';
 
 import settingsReducer from './reducers/settings';
+import globalReduer from './reducers/global';
 import initialstate from '../res/initial-state.json';
-
-const loggerMiddleware = createLogger();
-
-/**
- * Create a new createstore function with middlewares
- * also we want to eliminate some of the middlewares
- * for on-device deployment
- */
-const createStoreWithMiddleware = __DEV__ ? applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware
-    // Reactotron.reduxMiddleware
-)(createStore) : applyMiddleware(
-    thunkMiddleware
-)(createStore);
-
-/**
- * Create the root reduer by combinging the reducers together,
- * here is where we add our custom reducers
- */
-const rootReducer = persistCombineReducers({ key: 'primary', storage: AsyncStorage }, {
-    // every modules reducer should be define here
-    settings: settingsReducer,
-    router: routerReducer
-});
 
 /**
  * Configure store function, this is invoked by the singleton
  * @returns {any}
  */
 function configureStore () {
+    const loggerMiddleware = createLogger();
+
+    /**
+     * Create a new createstore function with middlewares
+     * also we want to eliminate some of the middlewares
+     * for on-device deployment
+     */
+    const createStoreWithMiddleware = __DEV__ ? applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+        // Reactotron.reduxMiddleware
+    )(Reactotron.createStore) : applyMiddleware(
+        thunkMiddleware
+    )(createStore);
+
+    /**
+     * Create the root reduer by combinging the reducers together,
+     * here is where we add our custom reducers
+     */
+    const rootReducer = persistCombineReducers({ key: 'primary', storage: AsyncStorage }, {
+        // every modules reducer should be define here
+        global: globalReduer,
+        settings: settingsReducer,
+        router: routerReducer
+    });
     let enhancers = undefined;
     if (__DEV__) {
         enhancers = compose(devTools());

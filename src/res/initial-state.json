@@ -1,2 +1,5 @@
 {
+    "global": {
+        "state": "loading"
+    }
 }

@@ -1,11 +1,11 @@
 /**
- * Loading view, using lottie animation
+ * Warning view, using lottie animation
  */
 import React, { Component } from 'react';
 
 import LottieView from 'lottie-react-native';
 
-export default class Loading extends Component {
+export default class Warning extends Component {
     componentDidMount () {
         this.animation.play();
     }
@@ -15,8 +15,8 @@ export default class Loading extends Component {
                 ref={animation => {
                     this.animation = animation;
                 }}
-                loop={true}
-                source={require('../animations/lottie/ice-cream-animation.json')}
+                loop={false}
+                source={require('../animations/lottie/warning-sign.json')}
           />
         );
     }
