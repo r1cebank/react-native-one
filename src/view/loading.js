@@ -15,7 +15,7 @@ export default class Loading extends Component {
                 ref={animation => {
                     this.animation = animation;
                 }}
-                source={require('../animations/lottie/ice_cream_animation.json')}
+                source={require('../animations/lottie/ice-cream-animation.json')}
           />
         );
     }
