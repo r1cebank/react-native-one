@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Route } from 'react-router';
 import { connect } from 'react-redux';
+import { Linking } from 'react-native';
 import React, { Component } from 'react';
 import createHistory from 'history/createMemoryHistory';
 import { ConnectedRouter } from 'react-router-redux';
@@ -17,9 +18,17 @@ const history = createHistory();
  * will also be here
  */
 class RootView extends Component {
+    componentWillMount () {
+        Linking.getInitialURL().then((url) => {
+            if (url) {
+                // Handle the deeplink
+            }
+        });
+    }
     render () {
         /* Here we will read from global state to determine if we are returning
-         * the router component or error component
+         * the router component or error component, at the point, we will have
+         * the store restored for us
          */
         switch (this.props.globalState) {
             case 'loading': {
