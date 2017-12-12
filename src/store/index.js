@@ -12,7 +12,7 @@ import devTools from 'remote-redux-devtools';
 import Reactotron from 'reactotron-react-native';
 import { routerReducer } from 'react-router-redux';
 import { persistCombineReducers, persistStore } from 'redux-persist';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
 import settingsReducer from './reducers/settings';
 import globalReduer from './reducers/global';
@@ -42,7 +42,7 @@ function configureStore () {
      * Create the root reduer by combinging the reducers together,
      * here is where we add our custom reducers
      */
-    const rootReducer = persistCombineReducers({ key: 'primary', storage: AsyncStorage }, {
+    const rootReducer = persistCombineReducers({ key: 'root', storage: AsyncStorage }, {
         // every modules reducer should be define here
         global: globalReduer,
         settings: settingsReducer,

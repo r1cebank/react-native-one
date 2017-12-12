@@ -9,6 +9,9 @@ import { ConnectedRouter } from 'react-router-redux';
 import Home from './view/home';
 import Loading from './view/loading';
 import Warning from './view/warning';
+import Permissions from './global/permissions';
+import * as DataActions from './store/actions/global';
+import Store from './store';
 
 const history = createHistory();
 
@@ -23,6 +26,9 @@ class RootView extends Component {
             if (url) {
                 // Handle the deeplink
             }
+        });
+        Permissions.checkAll().then((permissions) => {
+            Store.getStore().dispatch(DataActions.updatePermissions(permissions));
         });
     }
     render () {

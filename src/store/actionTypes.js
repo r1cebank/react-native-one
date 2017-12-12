@@ -1,0 +1,3 @@
+// Global
+export const UPDATE_PERMISSIONS = 'UPDATE_PERMISSIONS';
+export const UPDATE_STATE = 'UPDATE_STATE';
