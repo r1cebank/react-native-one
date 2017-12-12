@@ -86,6 +86,9 @@ class store {
         }
         return this.persistor;
     }
+    static dispatch (action) {
+        store.getStore().dispatch(action);
+    }
 }
 
 export default store;

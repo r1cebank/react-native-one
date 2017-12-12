@@ -27,8 +27,9 @@ class RootView extends Component {
                 // Handle the deeplink
             }
         });
+        // Update permissions during app startup
         Permissions.checkAll().then((permissions) => {
-            Store.getStore().dispatch(DataActions.updatePermissions(permissions));
+            Store.dispatch(DataActions.updatePermissions(permissions));
         });
     }
     render () {
