@@ -10,9 +10,8 @@ import thunkMiddleware from 'redux-thunk';
 import { AsyncStorage } from 'react-native';
 import devTools from 'remote-redux-devtools';
 import Reactotron from 'reactotron-react-native';
-import { routerReducer } from 'react-router-redux';
 import { persistCombineReducers, persistStore } from 'redux-persist';
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 
 import settingsReducer from './reducers/settings';
 import globalReduer from './reducers/global';
@@ -45,8 +44,7 @@ function configureStore () {
     const rootReducer = persistCombineReducers({ key: 'root', storage: AsyncStorage }, {
         // every modules reducer should be define here
         global: globalReduer,
-        settings: settingsReducer,
-        router: routerReducer
+        settings: settingsReducer
     });
     let enhancers = undefined;
     if (__DEV__) {

@@ -1,6 +1,7 @@
 {
     "global": {
         "state": "loading",
+        "firstLaunch": true,
         "permissions": {}
     }
 }
