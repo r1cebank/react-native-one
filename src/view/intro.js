@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Onboarding from 'react-native-onboarding-swiper';
 
 export default class Intro extends Component {
+    static navigationOptions = {
+        header: null
+    }
     render () {
         return (
             <Onboarding
