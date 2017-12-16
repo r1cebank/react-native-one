@@ -11,11 +11,13 @@ import {
 } from 'react-native';
 
 class Home extends Component {
-    render () {
+    componentWillMount () {
         const { navigate } = this.props.navigation;
         if (this.props.firstLaunch) {
             navigate('Intro');
         }
+    }
+    render () {
         return (
             <View>
                 <Text>

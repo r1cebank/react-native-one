@@ -1,13 +1,24 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Onboarding from 'react-native-onboarding-swiper';
 
-export default class Intro extends Component {
+class Intro extends Component {
     static navigationOptions = {
         header: null
+    }
+    constructor (props) {
+        super(props);
+        this.dismissView = this.dismissView.bind(this);
+    }
+    dismissView () {
+        const { goBack } = this.props.navigation;
+        goBack();
     }
     render () {
         return (
             <Onboarding
+                onSkip={this.dismissView}
+                onDone={this.dismissView}
                 pages={[
                     {
                         backgroundColor: '#fff',
@@ -29,3 +40,9 @@ export default class Intro extends Component {
         );
     }
 }
+
+Intro.propTypes = {
+    navigation: PropTypes.object.isRequired
+};
+
+export default Intro;
