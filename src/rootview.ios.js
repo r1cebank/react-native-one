@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types';
-import { Route } from 'react-router';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import createHistory from 'history/createMemoryHistory';
-import { ConnectedRouter } from 'react-router-redux';
 
-import Home from './view/home';
+import Store from './store';
 import Loading from './view/loading';
 import Warning from './view/warning';
-
-const history = createHistory();
+import Navigator from './navigator';
+import Permissions from './global/permissions';
+import * as DataActions from './store/actions/global';
 
 /**
  * This is the rootView component, it is required by
@@ -17,9 +15,16 @@ const history = createHistory();
  * will also be here
  */
 class RootView extends Component {
+    componentWillMount () {
+        // Update permissions during app startup
+        Permissions.checkAll().then((permissions) => {
+            Store.dispatch(DataActions.updatePermissions(permissions));
+        });
+    }
     render () {
         /* Here we will read from global state to determine if we are returning
-         * the router component or error component
+         * the router component or error component, at the point, we will have
+         * the store restored for us
          */
         switch (this.props.globalState) {
             case 'loading': {
@@ -29,17 +34,14 @@ class RootView extends Component {
                 return <Warning />;
             }
             default:
-                return (
-                    <ConnectedRouter history={history}>
-                        <Route exact path="/" component={Home} />
-                    </ConnectedRouter>
-                );
+                return <Navigator uriPrefix="rnone://" />;
         }
     }
 }
 
 RootView.propTypes = {
-    globalState: PropTypes.string
+    globalState: PropTypes.string,
+    firstLaunch: PropTypes.bool
 };
 
 function select (store) {

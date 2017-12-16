@@ -5,10 +5,12 @@ import Intro from './view/intro';
 
 const RootNavigator = StackNavigator({
     Home: {
-        screen: Home
+        screen: Home,
+        path: 'home'
     },
     Intro: {
-        screen: Intro
+        screen: Intro,
+        path: 'intro'
     }
 });
 

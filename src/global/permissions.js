@@ -19,6 +19,13 @@ async function checkAll () {
     ]);
 }
 
+export const PermissionStatus = {
+    authorized: 'authorized',
+    denied: 'denied',
+    restricted: 'restricted',
+    undetermined: 'undetermined'
+};
+
 export default {
     checkAll,
     checkPermission,

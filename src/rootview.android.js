@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Linking } from 'react-native';
 import React, { Component } from 'react';
 
 import Store from './store';
@@ -17,11 +16,6 @@ import * as DataActions from './store/actions/global';
  */
 class RootView extends Component {
     componentWillMount () {
-        Linking.getInitialURL().then((url) => {
-            if (url) {
-                // Handle the deeplink
-            }
-        });
         // Update permissions during app startup
         Permissions.checkAll().then((permissions) => {
             Store.dispatch(DataActions.updatePermissions(permissions));
@@ -40,7 +34,7 @@ class RootView extends Component {
                 return <Warning />;
             }
             default:
-                return <Navigator />;
+                return <Navigator uriPrefix="rnone://rnone/" />;
         }
     }
 }
