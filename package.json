@@ -9,7 +9,6 @@
 	"license": "MIT",
 	"dependencies": {
 		"cairn": "^0.8.0",
-		"eslint-config-r1cebank": "0.0.6",
 		"lodash": "^4.17.4",
 		"lottie-react-native": "^2.3.1",
 		"prop-types": "^15.6.0",
@@ -32,8 +31,14 @@
 		"remote-redux-devtools": "^0.5.12"
 	},
 	"devDependencies": {
+		"eslint-config-r1cebank": "^0.0.6",
+		"babel-eslint": "^8.0.3",
 		"babel-jest": "21.2.0",
 		"babel-preset-react-native": "4.0.0",
+		"eslint": "^4.13.1",
+		"eslint-plugin-import": "^2.8.0",
+		"eslint-plugin-lodash": "^2.5.0",
+		"eslint-plugin-react": "^7.5.1",
 		"jest": "21.2.1",
 		"react-test-renderer": "^16.2.0"
 	},
