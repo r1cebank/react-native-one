@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import {
-  Text,
-  View
+    View
 } from 'react-native';
+import { RkButton } from 'react-native-ui-kitten';
 
 class Home extends Component {
     componentWillMount () {
@@ -20,9 +20,7 @@ class Home extends Component {
     render () {
         return (
             <View>
-                <Text>
-                Welcome to React Native!
-                </Text>
+                <RkButton>Click me!</RkButton>
             </View>
         );
     }
