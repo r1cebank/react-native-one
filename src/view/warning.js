@@ -16,8 +16,7 @@ export default class Warning extends Component {
                     this.animation = animation;
                 }}
                 loop={false}
-                source={require('../animations/lottie/warning-sign.json')}
-          />
+                source={require('../animations/lottie/warning-sign.json')} />
         );
     }
 }
